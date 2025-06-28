@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vasco - My Profile</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+</head>
+<body>
+    <div th:replace="layout/header :: header"></div>
+    
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="/images/default-avatar.png" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h2 class="profile-name">John Doe</h2>
+                <p class="profile-bio">Adventure seeker and travel enthusiast</p>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Countries Visited</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">8</span>
+                        <span class="stat-label">Achievements</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">Travel Stories</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-content">
+            <div class="recent-activity">
+                <h3 class="section-title">Recent Activity</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-date">2024-03-15</span>
+                        <span class="activity-text">Added new photos from Japan trip</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-date">2024-03-10</span>
+                        <span class="activity-text">Completed achievement: Globe Trotter</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-date">2024-03-05</span>
+                        <span class="activity-text">Added new country to wishlist: Iceland</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="travel-goals">
+                <h3 class="section-title">Travel Goals</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-date">In Progress</span>
+                        <span class="activity-text">Visit 20 countries by 2025</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-date">Planned</span>
+                        <span class="activity-text">Backpack through Southeast Asia</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-date">Completed</span>
+                        <span class="activity-text">Visit all major cities in Europe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div th:replace="layout/footer :: footer"></div>
+</body>
+</html>

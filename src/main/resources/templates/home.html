@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vasco - Explore the World</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<header th:replace="layout/header :: body"></header>
+<body>
+    <div class="hero">
+        <h2>Your Journey Begins Here</h2>
+    </div>
+    <div class="content">
+        <h3 id="about">About Vasco</h3>
+        <p>Vasco is your premier travel companion, offering a sophisticated platform to mark your travels, plan new adventures, and connect with fellow explorers. Inspired by the legendary navigator Vasco da Gama, our service brings a touch of old-world elegance to modern-day adventures.</p>
+        <h3 id="features">Features</h3>
+        <p>With Vasco, you can easily:</p>
+        <ul>
+            <li>Track countries you have visited or wish to visit</li>
+            <li>Attach photos and memories to your travel log</li>
+            <li>View and interact with profiles of other travelers</li>
+            <li>Gain inspiration from curated travel stories and tips</li>
+        </ul>
+    </div>
+    
+    <div th:replace="layout/footer :: body"></div>
+</body>
+</html>

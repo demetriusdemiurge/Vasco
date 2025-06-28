@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vasco - Achievements</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/achievements.css}">
+</head>
+<body>
+    <div th:replace="layout/header :: header"></div>
+    
+    <div class="container">
+        <h2 class="section-title">My Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🌍</div>
+                <h3 class="achievement-title">Globe Trotter</h3>
+                <p class="achievement-description">Visit 10 different countries</p>
+                <div class="achievement-progress">
+                    <div class="progress-bar" style="width: 60%;"></div>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">📸</div>
+                <h3 class="achievement-title">Photo Master</h3>
+                <p class="achievement-description">Share 50 travel photos</p>
+                <div class="achievement-progress">
+                    <div class="progress-bar" style="width: 30%;"></div>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">✍️</div>
+                <h3 class="achievement-title">Story Teller</h3>
+                <p class="achievement-description">Write 5 travel stories</p>
+                <div class="achievement-progress">
+                    <div class="progress-bar" style="width: 40%;"></div>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">🎯</div>
+                <h3 class="achievement-title">Bucket List Master</h3>
+                <p class="achievement-description">Complete 3 bucket list items</p>
+                <div class="achievement-progress">
+                    <div class="progress-bar" style="width: 20%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div th:replace="layout/footer :: footer"></div>
+</body>
+</html> 

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <title>Vasco - My Profile</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/profile.css}">
 </head>
 <body>
-    <div th:replace="layout/header :: header"></div>
+    <div th:replace="~{layout/header :: body}"></div>
     
     <div class="container">
         <div class="profile-header">
@@ -74,6 +74,6 @@
         </div>
     </div>
     
-    <div th:replace="layout/footer :: footer"></div>
+    <div th:replace="~{layout/footer :: body}"></div>
 </body>
 </html>

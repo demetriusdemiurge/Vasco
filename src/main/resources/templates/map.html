@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <title>Vasco - My Travel Map</title>
     <link rel="stylesheet" th:href="@{/css/common.css}">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/map.css}">
 </head>
 <body>
-    <div th:replace="layout/header :: body"></div>
+    <div th:replace="~{layout/header :: body}"></div>
 
     <div class="container">
         <div class="map-controls">
@@ -1088,7 +1088,7 @@
         </div>
     </div>
 
-    <div th:replace="layout/footer :: body"></div>
+    <div th:replace="~{layout/footer :: body}"></div>
 
     <script th:src="@{/js/map.js}"></script>
 </body>

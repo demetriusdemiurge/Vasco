@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface UserMarkedCountryService {
 
-    void markCountry(Long userID, String countryIsoCode, boolean marked);
-    void unmarkCountry(Long userID, String countryIsoCode);
+    void markCountry(Long userId, String countryIsoCode, boolean marked);
+    void unmarkCountry(Long userId, String countryIsoCode);
     List<MarkedCountryDTO> getMarkedCountries(Long userId);
 
 }

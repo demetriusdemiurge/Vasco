@@ -23,18 +23,26 @@ public class UserMarkedCountryServiceImpl implements UserMarkedCountryService {
     private final UserRepository userRepository;
     private final CountryRepository countryRepository;
 
+    private User getUser(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    private Country getCountry(String countryIsoCode) {
+        return countryRepository.findByIsoCode(countryIsoCode)
+                .orElseThrow(() -> new RuntimeException("Country not found"));
+    }
+
     @Override
     @Transactional
     public void markCountry(Long userId, String countryIsoCode, boolean marked) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        
-        Country country = countryRepository.findByIsoCode(countryIsoCode)
-                .orElseThrow(() -> new RuntimeException("Country not found"));
 
+        User user = getUser(userId);
+        Country country = getCountry(countryIsoCode);
         UserMarkedCountryId userMarkedCountryId = new UserMarkedCountryId();
-        userMarkedCountryId.setUserId(user.getId());
-        userMarkedCountryId.setCountryIsoCode(country.getIsoCode());
+        userMarkedCountryId.setUserId(userId);
+        userMarkedCountryId.setCountryIsoCode(countryIsoCode);
+
 
         UserMarkedCountry userMarkedCountry = userMarkedCountryRepository.findById(userMarkedCountryId)
                 .orElse(new UserMarkedCountry());
@@ -50,11 +58,9 @@ public class UserMarkedCountryServiceImpl implements UserMarkedCountryService {
     @Override
     @Transactional
     public void unmarkCountry(Long userId, String countryIsoCode) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        
-        Country country = countryRepository.findByIsoCode(countryIsoCode)
-                .orElseThrow(() -> new RuntimeException("Country not found"));
+
+        User user = getUser(userId);
+        Country country = getCountry(countryIsoCode);
 
         UserMarkedCountryId userMarkedCountryId = new UserMarkedCountryId();
         userMarkedCountryId.setUserId(user.getId());

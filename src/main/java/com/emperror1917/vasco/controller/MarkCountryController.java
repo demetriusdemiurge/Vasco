@@ -32,8 +32,6 @@ public class MarkCountryController {
         return ResponseEntity.ok().build();
     }
 
-
-
     @DeleteMapping("/unmark-country/{countryIsoCode}")
     public ResponseEntity<Void> unmarkCountry(@PathVariable String countryIsoCode,
                                               @AuthenticationPrincipal CustomUserDetails userDetails) {

@@ -68,7 +68,7 @@ public class UserMarkedCountryServiceImpl implements UserMarkedCountryService {
 
         return marked.stream()
                 .map(entity -> new MarkedCountryResponse(
-                        entity.getCountry().getIsoCode(), // или просто isoCode
+                        entity.getCountry().getIsoCode(),
                         entity.isMarked()
                 ))
                 .toList();

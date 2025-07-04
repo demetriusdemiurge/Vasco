@@ -1,8 +1,7 @@
 package com.emperror1917.vasco.controller;
 
 import com.emperror1917.vasco.config.CustomUserDetails;
-import com.emperror1917.vasco.dto.MarkRequest;
-import com.emperror1917.vasco.dto.MarkedCountryResponse;
+import com.emperror1917.vasco.dto.MarkedCountryDTO;
 import com.emperror1917.vasco.service.UserMarkedCountryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +18,14 @@ public class MarkCountryController {
     private final UserMarkedCountryService service;
 
     @GetMapping("/marked-countries")
-    public ResponseEntity<List<MarkedCountryResponse>> getMarkedCountries(
+    public ResponseEntity<List<MarkedCountryDTO>> getMarkedCountries(
             @AuthenticationPrincipal CustomUserDetails userDetails) {
-        List<MarkedCountryResponse> markedCountries = service.getMarkedCountries(userDetails.getId());
+        List<MarkedCountryDTO> markedCountries = service.getMarkedCountries(userDetails.getId());
         return ResponseEntity.ok(markedCountries);
     }
 
     @PostMapping("/mark-country")
-    public ResponseEntity<Void> markCountry(@RequestBody MarkRequest request,
+    public ResponseEntity<Void> markCountry(@RequestBody MarkedCountryDTO request,
                                             @AuthenticationPrincipal CustomUserDetails userDetails) {
         service.markCountry(userDetails.getId(), request.getCountryIsoCode(), request.isMarked());
         return ResponseEntity.ok().build();

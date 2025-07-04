@@ -1,6 +1,6 @@
 package com.emperror1917.vasco.service.impl;
 
-import com.emperror1917.vasco.dto.MarkedCountryResponse;
+import com.emperror1917.vasco.dto.MarkedCountryDTO;
 import com.emperror1917.vasco.entity.Country;
 import com.emperror1917.vasco.entity.User;
 import com.emperror1917.vasco.entity.UserMarkedCountry;
@@ -63,11 +63,11 @@ public class UserMarkedCountryServiceImpl implements UserMarkedCountryService {
         userMarkedCountryRepository.deleteById(userMarkedCountryId);
     }
 
-    public List<MarkedCountryResponse> getMarkedCountries(Long userId) {
+    public List<MarkedCountryDTO> getMarkedCountries(Long userId) {
         List<UserMarkedCountry> marked = userMarkedCountryRepository.findByUserId(userId);
 
         return marked.stream()
-                .map(entity -> new MarkedCountryResponse(
+                .map(entity -> new MarkedCountryDTO(
                         entity.getCountry().getIsoCode(),
                         entity.isMarked()
                 ))

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "user_achievements")
@@ -30,6 +30,6 @@ public class UserAchievement {
     private Achievement achievement;
 
     @Column(name = "achieved_at", nullable = false)
-    private LocalDateTime achievedAt;
+    private LocalDate achievedAt;
 
 }

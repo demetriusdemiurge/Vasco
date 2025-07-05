@@ -12,6 +12,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class UserAchievementId implements Serializable {
-    private int userId;
-    private int achievementId;
+    private Long userId;
+    private Long achievementId;
 }

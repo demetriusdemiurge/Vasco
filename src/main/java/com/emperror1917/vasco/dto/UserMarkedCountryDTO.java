@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MarkedCountryDTO {
+public class UserMarkedCountryDTO {
     private String countryIsoCode;
     private boolean marked;
 }

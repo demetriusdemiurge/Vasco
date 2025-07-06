@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
-public class UserAchievementDTO {
+public class UserAchievementDto {
     private long achievementId;
     private LocalDate achievedAt;
 }

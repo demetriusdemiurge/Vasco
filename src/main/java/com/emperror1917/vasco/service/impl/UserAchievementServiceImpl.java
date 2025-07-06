@@ -1,6 +1,6 @@
 package com.emperror1917.vasco.service.impl;
 
-import com.emperror1917.vasco.dto.UserAchievementDTO;
+import com.emperror1917.vasco.dto.UserAchievementDto;
 import com.emperror1917.vasco.entity.Achievement;
 import com.emperror1917.vasco.entity.User;
 import com.emperror1917.vasco.entity.UserAchievement;
@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -57,15 +58,15 @@ public class UserAchievementServiceImpl implements UserAchievementService {
     }
 
     @Override
-    public List<UserAchievementDTO> getUsersAchievements(Long userId) {
+    public List<UserAchievementDto> getUsersAchievements(Long userId) {
 
         List<UserAchievement> userAchievements = userAchievementRepository.findByUserId(userId);
 
         return userAchievements.stream()
-                .map(entity -> new UserAchievementDTO(
+                .map(entity -> new UserAchievementDto(
                         entity.getAchievement().getId(),
                         entity.getAchievedAt()
                 ))
-                .toList();
+                .collect(Collectors.toList());
     }
 }

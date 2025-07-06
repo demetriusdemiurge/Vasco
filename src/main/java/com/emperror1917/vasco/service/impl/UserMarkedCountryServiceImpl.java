@@ -1,6 +1,6 @@
 package com.emperror1917.vasco.service.impl;
 
-import com.emperror1917.vasco.dto.UserMarkedCountryDTO;
+import com.emperror1917.vasco.dto.UserMarkedCountryDto;
 import com.emperror1917.vasco.entity.Country;
 import com.emperror1917.vasco.entity.User;
 import com.emperror1917.vasco.entity.UserMarkedCountry;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -68,15 +69,15 @@ public class UserMarkedCountryServiceImpl implements UserMarkedCountryService {
         userMarkedCountryRepository.deleteById(userMarkedCountryId);
     }
 
-    public List<UserMarkedCountryDTO> getMarkedCountries(Long userId) {
+    public List<UserMarkedCountryDto> getMarkedCountries(Long userId) {
         List<UserMarkedCountry> markedCountries = userMarkedCountryRepository.findByUserId(userId);
 
         return markedCountries.stream()
-                .map(entity -> new UserMarkedCountryDTO(
+                .map(entity -> new UserMarkedCountryDto(
                         entity.getCountry().getIsoCode(),
                         entity.isMarked()
                 ))
-                .toList();
+                .collect(Collectors.toList());
     }
 
 } 

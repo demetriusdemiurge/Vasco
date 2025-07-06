@@ -1,4 +1,4 @@
-package com.emperror1917.vasco.controller;
+package com.emperror1917.vasco.controller.api;
 
 import com.emperror1917.vasco.entity.User;
 import com.emperror1917.vasco.service.UserService;

@@ -8,46 +8,76 @@
     <link rel="stylesheet" th:href="@{/css/achievements.css}">
 </head>
 <body>
-    <div th:replace="~{layout/header :: body}"></div>
-    
-    <div class="container">
-        <h2 class="section-title">My Achievements</h2>
-        <div class="achievements-grid">
-            <div class="achievement-card">
-                <div class="achievement-icon">🌍</div>
-                <h3 class="achievement-title">Globe Trotter</h3>
-                <p class="achievement-description">Visit 10 different countries</p>
-                <div class="achievement-progress">
-                    <div class="progress-bar" style="width: 60%;"></div>
+<div th:replace="~{layout/header :: body}"></div>
+
+<div class="container">
+    <h2 class="section-title">My Achievements</h2>
+
+    <!-- UNLOCKED -->
+    <div class="achievements-section">
+        <div class="section-head">
+            <h3 class="section-subtitle">Unlocked</h3>
+            <span class="count-pill" th:text="${#lists.size(unlockedAchievements)}">0</span>
+        </div>
+
+        <div class="achievements-grid" th:if="${unlockedAchievements != null and !#lists.isEmpty(unlockedAchievements)}">
+            <div class="achievement-card unlocked" th:each="a : ${unlockedAchievements}">
+                <div class="achievement-top">
+                    <span class="badge badge-unlocked">Unlocked</span>
+                    <span class="achieved-at" th:text="${a.achievedAt}">2026-01-16</span>
                 </div>
-            </div>
-            <div class="achievement-card">
-                <div class="achievement-icon">📸</div>
-                <h3 class="achievement-title">Photo Master</h3>
-                <p class="achievement-description">Share 50 travel photos</p>
-                <div class="achievement-progress">
-                    <div class="progress-bar" style="width: 30%;"></div>
+
+                <div class="achievement-icon sprite"
+                     th:style="|--sprite: url('@{${a.iconUrl}}');|">
                 </div>
-            </div>
-            <div class="achievement-card">
-                <div class="achievement-icon">✍️</div>
-                <h3 class="achievement-title">Story Teller</h3>
-                <p class="achievement-description">Write 5 travel stories</p>
+
+                <h3 class="achievement-title" th:text="${a.name}">Flag Hunter</h3>
+                <p class="achievement-description" th:text="${a.description}">Visit 10 countries</p>
+
                 <div class="achievement-progress">
-                    <div class="progress-bar" style="width: 40%;"></div>
-                </div>
-            </div>
-            <div class="achievement-card">
-                <div class="achievement-icon">🎯</div>
-                <h3 class="achievement-title">Bucket List Master</h3>
-                <p class="achievement-description">Complete 3 bucket list items</p>
-                <div class="achievement-progress">
-                    <div class="progress-bar" style="width: 20%;"></div>
+                    <div class="progress-bar progress-bar-unlocked"></div>
                 </div>
             </div>
         </div>
+
+        <div class="empty-state" th:if="${unlockedAchievements == null or #lists.isEmpty(unlockedAchievements)}">
+            You haven’t unlocked any achievements yet.
+        </div>
     </div>
-    
-    <div th:replace="~{layout/footer :: body}"></div>
+
+    <!-- LOCKED -->
+    <div class="achievements-section">
+        <div class="section-head">
+            <h3 class="section-subtitle">Locked</h3>
+            <span class="count-pill" th:text="${#lists.size(lockedAchievements)}">0</span>
+        </div>
+
+        <div class="achievements-grid" th:if="${lockedAchievements != null and !#lists.isEmpty(lockedAchievements)}">
+            <div class="achievement-card locked" th:each="a : ${lockedAchievements}">
+                <div class="achievement-top">
+                    <span class="badge badge-locked">Locked</span>
+                    <span class="lock-hint">Complete requirements</span>
+                </div>
+
+                <div class="achievement-icon sprite"
+                     th:style="|--sprite: url('@{${a.iconUrl}}');|">
+                </div>
+
+                <h3 class="achievement-title" th:text="${a.name}">Flag Hunter</h3>
+                <p class="achievement-description" th:text="${a.description}">Visit 10 countries</p>
+
+                <div class="achievement-progress">
+                    <div class="progress-bar progress-bar-locked" style="width:20%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-state" th:if="${lockedAchievements == null or #lists.isEmpty(lockedAchievements)}">
+            No locked achievements. Nice.
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{layout/footer :: body}"></div>
 </body>
-</html> 
+</html>

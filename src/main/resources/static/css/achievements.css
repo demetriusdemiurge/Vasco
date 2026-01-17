@@ -1,4 +1,7 @@
-/* секции */
+/* =========================
+   Sections / Head
+   ========================= */
+
 .achievements-section {
     margin-top: 18px;
 }
@@ -25,7 +28,10 @@
     color: #2c3e50;
 }
 
-/* твой старый grid оставляем, слегка уточняем */
+/* =========================
+   Grid
+   ========================= */
+
 .achievements-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -33,7 +39,10 @@
     margin-top: 14px;
 }
 
-/* карточка — как было */
+/* =========================
+   Card + Background Image
+   ========================= */
+
 .achievement-card {
     background-color: #fff;
     border-radius: 8px;
@@ -41,14 +50,63 @@
     padding: 20px;
     text-align: center;
     position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* верхняя строка в карточке */
+/* Background image layer */
+.achievement-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    /* uses CSS var from Thymeleaf: --img: url('...') */
+    background-image: var(--img);
+    background-repeat: no-repeat;
+
+    /* CENTERING */
+    background-position: 50% 50%;
+    background-size: cover;
+
+    /* make image visible but not too loud */
+    opacity: 0.32;
+}
+
+/* White overlay for readability */
+.achievement-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+/* Locked state: grayscale only (NO BLUR) */
+.achievement-card.locked::before {
+    filter: grayscale(100%);
+    opacity: 0.30; /* можно чуть меньше/больше, если надо */
+}
+
+/* Make content above background */
+.achievement-top,
+.achievement-title,
+.achievement-description,
+.achievement-progress {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   Top row / badges
+   ========================= */
+
 .achievement-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    gap: 10px;
 }
 
 .badge {
@@ -56,49 +114,53 @@
     padding: 4px 10px;
     border-radius: 999px;
     color: #fff;
+    white-space: nowrap;
 }
 
 .badge-unlocked {
-    background-color: #2ecc71; /* зелёный, мягкий */
+    background-color: #2ecc71;
 }
 
 .badge-locked {
-    background-color: #95a5a6; /* серый */
+    background-color: #95a5a6;
 }
 
-.achieved-at,
-.lock-hint {
+/* =========================
+   Text blocks with frames
+   ========================= */
+
+.text-frame {
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(44, 62, 80, 0.18);
+    border-radius: 12px;
+    padding: 6px 10px;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.achieved-at.text-frame,
+.lock-hint.text-frame {
     font-size: 0.8em;
     color: #666;
+    border-radius: 999px;
+    padding: 4px 10px;
 }
 
-/* иконка как у тебя, но поддержка img/emoji */
-.achievement-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.achievement-icon img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.achievement-emoji {
-    font-size: 40px;
-    line-height: 1;
-}
-
-/* тексты как в старом */
+/* Title / description (keep your old typography) */
 .achievement-title {
     font-size: 1.2em;
     margin-bottom: 10px;
     color: #2c3e50;
+}
+
+.achievement-title.text-frame {
+    margin: 10px auto 10px;
+    font-weight: 700;
 }
 
 .achievement-description {
@@ -107,7 +169,14 @@
     line-height: 1.4;
 }
 
-/* прогресс — твой старый блок */
+.achievement-description.text-frame {
+    margin: 0 auto;
+}
+
+/* =========================
+   Progress (old style)
+   ========================= */
+
 .achievement-progress {
     margin-top: 15px;
     padding: 5px;
@@ -120,19 +189,9 @@
     background-color: #3498db;
     border-radius: 2px;
     transition: width 0.3s ease;
-    width: 60%; /* дефолт, чтобы было “живенько” */
+    width: 60%;
 }
 
-/* отличия unlocked/locked максимально аккуратно */
-.achievement-card.locked {
-    opacity: 0.72;
-}
-
-.achievement-card.locked .achievement-icon {
-    filter: grayscale(70%);
-}
-
-/* если хочешь разный цвет полоски */
 .progress-bar-unlocked {
     background-color: #3498db;
     width: 100%;
@@ -142,7 +201,10 @@
     background-color: #95a5a6;
 }
 
-/* пустые состояния */
+/* =========================
+   Empty state
+   ========================= */
+
 .empty-state {
     margin-top: 12px;
     background: #fff;
@@ -153,31 +215,16 @@
     text-align: center;
 }
 
-.achievement-icon.sprite{
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 15px;
-    display: block;
+/* =========================
+   Responsive small tweaks
+   ========================= */
 
-    background-image: var(--sprite);
-    background-repeat: no-repeat;
-
-    /* важно: чтобы не ужимать по высоте, а сохранить пропорции */
-    background-size: 200% auto;
-
-    /* по умолчанию показываем левый кадр по центру */
-    background-position: 0% 50%;
-
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-/* unlocked = левая половина */
-.achievement-card.unlocked .achievement-icon.sprite{
-    background-position: 0% 50%;
-}
-
-/* locked = правая половина */
-.achievement-card.locked .achievement-icon.sprite{
-    background-position: 100% 50%;
+@media (max-width: 520px) {
+    .achievement-card {
+        padding: 16px;
+    }
+    .achievement-top {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

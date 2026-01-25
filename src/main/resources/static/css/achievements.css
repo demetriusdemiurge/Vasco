@@ -9,7 +9,6 @@
 .section-head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-top: 8px;
 }
 
@@ -26,6 +25,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     font-size: 0.95em;
     color: #2c3e50;
+    margin-left: 5px;
 }
 
 /* =========================
@@ -68,9 +68,6 @@
     /* CENTERING */
     background-position: 50% 50%;
     background-size: cover;
-
-    /* make image visible but not too loud */
-    opacity: 0.32;
 }
 
 /* White overlay for readability */
